@@ -14,19 +14,10 @@ https://github.com/flant/dapp
   executor = "docker"
   [runners.docker]
     tls_verify = false
-    image = "yourregistry.local/dapp_in_docker"
-    privileged = false
-    pull_policy = "if-not-present"
+    image = "maxpain/dapp"
+    privileged = true
     disable_cache = false
-    volumes = ["/cache", "/var/run/docker.sock:/var/run/docker.sock", "/tmp:/tmp"]
+    volumes = ["/cache", "/var/run/docker.sock:/var/run/docker.sock", "/tmp:/tmp", "/root:/root"]
     shm_size = 0
   [runners.cache]
-```
-
-### Расширение сборочного контейнра требуемыми утилитами
-```
-before_setup do
-   run 'curl -sL https://deb.nodesource.com/setup_8.x | bash -',
-   'apt-get install -y nodejs'
-end
 ```
